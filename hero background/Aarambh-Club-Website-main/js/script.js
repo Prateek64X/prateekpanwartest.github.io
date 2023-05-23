@@ -9,11 +9,13 @@ function backgroundAnimation() {
   const resizeCanvas = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    const logoTextHeight = lines.length * lineHeight;
+    const logoTextY = canvas.height / 2 - logoTextHeight / 2;
+    y = logoTextY; // Update the 'y' variable used in drawing the logo text
   };
 
-    window.addEventListener('resize', () => {
+  window.addEventListener('resize', () => {
     resizeCanvas();
-    location.reload();
   });
 
   resizeCanvas();
