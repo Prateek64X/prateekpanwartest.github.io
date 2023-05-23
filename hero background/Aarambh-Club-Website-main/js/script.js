@@ -9,6 +9,9 @@ function backgroundAnimation() {
   const resizeCanvas = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    // Update element positions or any other adjustments here
+    // For example, if you want to center the logo text vertically:
     const logoTextHeight = lines.length * lineHeight;
     const logoTextY = canvas.height / 2 - logoTextHeight / 2;
     y = logoTextY; // Update the 'y' variable used in drawing the logo text
@@ -20,6 +23,8 @@ function backgroundAnimation() {
 
   resizeCanvas();
 
+  let animationId; 
+  
   div.appendChild(canvas);
 
   const katakana = 'अआइईउऊऋएऐओऔकखगघचछजझटठडढतथदधनपफबभमयरलवशषसहळक्षज्ञअंअः';
@@ -66,10 +71,15 @@ function backgroundAnimation() {
     for (var i = 0; i < lines.length; i++) {
       context.fillText(lines[i], canvas.width / 2, y + i * lineHeight);
     }
-
+    animationId = requestAnimationFrame(draw); // Use requestAnimationFrame for smoother animation
   };
 
-  setInterval(draw, 30);
+    const startAnimation = () => {
+    cancelAnimationFrame(animationId); // Cancel any existing animation frame request
+    draw(); // Start the animation
+  };
+
+  startAnimation(); 
 }
   /* Logo
 "    
